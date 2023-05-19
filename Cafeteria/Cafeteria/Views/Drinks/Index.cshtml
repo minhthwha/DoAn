@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Cafeteria.Models.Drink>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>
+    Quản lý đồ uống
+</h1>
+
+<p>
+    <a asp-action="Create">
+        Thêm đồ uống mới
+    </a>
+</p>
+<table class="w3-table w3-bordered">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DrinkName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CalculationUnit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedAt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DrinkName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CalculationUnit)
+            </td>
+            <td>
+                    <img src="@item.Image" height="50" width="50" asp-append-version="true">
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+            <td>
+                    <a asp-action="Edit" asp-route-id="@item.DrinkId">Sửa</a> |
+                    <a asp-action="Details" asp-route-id="@item.DrinkId">Chi tiết</a> |
+                    <a asp-action="Delete" asp-route-id="@item.DrinkId">Xóa</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

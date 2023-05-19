@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Cafeteria.Models.Supplier>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Quản lý nhà cung cấp</h1>
+
+<p>
+    <a asp-action="Create">Thêm nhà cung cấp mới</a>
+</p>
+<table class="w3-table w3-bordered">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SupplierName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SupplierEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SupplierPhone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SupplierAddress)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SupplierName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SupplierEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SupplierPhone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SupplierAddress)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.SupplierId">Sửa</a> |
+                <a asp-action="Details" asp-route-id="@item.SupplierId">Chi tiết</a> |
+                <a asp-action="Delete" asp-route-id="@item.SupplierId">Xóa</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

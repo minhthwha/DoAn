@@ -1,0 +1,115 @@
+﻿@model Cafeteria.Models.Order
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="services">
+    <div class="main-area">
+        <div class="section-area">
+            <div class="section-C">
+                <div class="box-img">
+                    <img src="/img/ThuNgan.jpg" />
+                </div>
+                <h2 style="text-align:center;">
+                    <div>
+                        @if (ViewBag.CartItems != null)
+                        {
+                            double total = 0;
+                            <table class="w3-table w3-bordered" style="width: 100%">
+                                <tr>
+                                    <th>
+                                        Đồ uống
+                                    </th>
+                                    <th>
+                                        Giá
+                                    </th>
+                                    <th>
+                                        Số lượng
+                                    </th>
+                                    <th>
+                                        Thành tiền
+                                    </th>
+                                </tr>
+                                @foreach (CartItem item in ViewBag.CartItems)
+                                {
+                                    var thanhTien = item.Quantity * item.Drink.Price;
+                                    total += thanhTien + 30000;
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Drink.DrinkName)
+                                        </td>
+                                        <td>
+                                            @(item.Drink.Price.ToString("n0"))
+                                        </td>
+                                        <td>
+                                            @(item.Quantity.ToString("n0"))
+                                        </td>
+                                        <td>
+                                            @(thanhTien.ToString("n0"))
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+                            <p>
+                                Phương thức thanh toán: Thanh toán trực tiếp
+                            </p>
+                            <p>
+                                Phí vận chuyển: 30,000 VNĐ
+                            </p>
+                            <p>
+                                Tổng tiền: @total.ToString("n0") VNĐ
+                            </p>
+                        }
+                    </div>
+                    <form method="post" asp-action="Create" asp-controller="Bills">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="GuestName" class="control-label"></label>
+                            <input asp-for="GuestName" class="form-control" />
+                            <span asp-validation-for="GuestName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="GuestPhone" class="control-label"></label>
+                            <input asp-for="GuestPhone" class="form-control" type="tel" />
+                            <span asp-validation-for="GuestPhone" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="GuestAddress" class="control-label"></label>
+                            <input asp-for="GuestAddress" class="form-control" />
+                            <span asp-validation-for="GuestAddress" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Note" class="control-label"></label>
+                            <input asp-for="Note" class="form-control" />
+                            <span asp-validation-for="Note" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Xác nhận thanh toán" class="btn btn-primary" />
+                        </div>
+                    </form>
+                </h2>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="icons">
+            <a href="#!">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#!">
+                <i class="fab fa-facebook"></i>
+            </a>
+            <a href="#!">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#!">
+                <i class="fab fa-snapchat-square"></i>
+            </a>
+        </div>
+        <div class="copyright">
+            &copy; Copyright 2023
+        </div>
+    </footer>
+</section>

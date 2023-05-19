@@ -1,0 +1,133 @@
+﻿@model List<Cafeteria.Models.CartItem>
+
+@{
+    ViewData["Title"] = "Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="services">
+    <div class="main-area">
+        <div class="section-area">
+            <div class="section-C">
+                <div class="box-img">
+                    <img src="/img/DemoMenu.jpg" />
+                </div>
+                <h1>
+                    GIỎ HÀNG
+                </h1>
+                <h2 style="text-align: center">
+                    @if (Model.Count > 0)
+                    {
+                        double total = 0;
+                        <table class="w3-table w3-bordered" style="width: 100%;">
+                            <tr>
+                                <th>
+                                    Đồ uống
+                                </th>
+                                <th>
+                                    Giá
+                                </th>
+                                <th>
+                                    Số lượng
+                                </th>
+                                <th>
+                                    Thành tiền
+                                </th>
+                                <th></th>
+                            </tr>
+                            @foreach (var item in Model)
+                            {
+                                var thanhTien = item.Quantity * item.Drink.Price;
+                                total += thanhTien;
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Drink.DrinkName)
+                                    </td>
+                                    <td>
+                                        @(item.Drink.Price.ToString("n0"))
+                                    </td>
+                                    <td>
+                                        <form asp-route="updatecart">
+                                            <input name="drinkid" asp-for="@item.Drink.DrinkId" type="hidden" />
+                                            <input name="quantity" asp-for="@item.Quantity" id="@($"quantity-{item.Drink.DrinkId}")" min="1" />
+                                            <button style="font-size:24px">
+                                                <i class="fa fa-refresh"></i>
+                                            </button>
+                                            @*<input type="submit" value="Cập nhật">*@
+                                        </form>
+                                    </td>
+                                    <td>
+                                        @(thanhTien.ToString("n0"))
+                                    </td>
+                                    <td>
+                                        <a asp-route="removecart" asp-route-drinkid="@item.Drink.DrinkId" class="btn btn-danger">
+                                            Xóa
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                        <p>
+                            Tổng tiền: @(total.ToString("n0")) VNĐ
+                        </p>
+                        <a asp-controller="Bills" asp-action="Create" class="btn btn-success">
+                            Thanh toán
+                        </a>
+                        <br />
+                        <a class="btn btn-danger" asp-area="" asp-controller="Menu" asp-action="Index">
+                            Tiếp tục mua sắm
+                        </a>
+                        @section Scripts {
+                        <script>
+                            $(document).ready(function () {
+                                $("#updatecartitem").click(function (event) {
+                                    event.preventDefault();
+                                    var drinkId = $(this).attr("data-drinkid");
+                                    var quantity = $("#quantity-" + drinkId).val();
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "@Url.RouteUrl("updatecart")",
+                                        data: {
+                                            drinkid: drinkId,
+                                            quantity: quantity
+                                        },
+                                        success: function (result) {
+                                            window.location.href = "@Url.RouteUrl("cart")";
+                                        }
+                                    });
+
+                                });
+                        </script>
+                    }
+                    }
+                    else
+                    {
+                        <p class="alert alert-danger">
+                            Giỏ hàng trống!
+                        </p>
+                    }
+                </h2>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="icons">
+            <a href="#!">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#!">
+                <i class="fab fa-facebook"></i>
+            </a>
+            <a href="#!">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#!">
+                <i class="fab fa-snapchat-square"></i>
+            </a>
+        </div>
+        <div class="copyright">
+            &copy; Copyright 2023
+        </div>
+    </footer>
+</section>
+

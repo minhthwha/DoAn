@@ -1,0 +1,89 @@
+﻿@model Cafeteria.Models.User
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Chi tiết người dùng</h1>
+
+<div>
+    <table class="w3-table w3-bordered">
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.UserName)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.UserEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.UserEmail)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.UserPhone)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.UserPhone)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.UserAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.UserAddress)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.Position)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Position)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Password)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.RegisteredAt)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.RegisteredAt)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.IsAdmin)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.IsAdmin)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.IsActive)
+            </td>
+        </tr>
+    </table>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.UserId">Sửa</a> |
+    <a asp-action="Index">Quay lại danh sách</a>
+</div>

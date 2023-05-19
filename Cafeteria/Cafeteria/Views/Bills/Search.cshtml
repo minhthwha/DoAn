@@ -1,0 +1,49 @@
+﻿@model Cafeteria.Models.Order
+
+@{
+    ViewData["Title"] = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="services">
+    <div class="main-area">
+        <div class="section-area">
+            <div class="section-C">
+                <div class="box-img">
+                    <img src="/img/Search.png" />
+                </div>
+                <h1 style="text-align: center">
+                    Nhập mã đơn hàng để xem đơn hàng của bạn:
+                    <br />
+                    <form method="post" asp-action="Search" asp-controller="Bills">
+                        <input name="orderId" class="form-control" />
+                        <br />
+                        <button type="submit" class="btn btn-success">
+                            Tìm kiếm
+                        </button>
+                    </form>
+                </h1>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="icons">
+            <a href="#!">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#!">
+                <i class="fab fa-facebook"></i>
+            </a>
+            <a href="#!">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#!">
+                <i class="fab fa-snapchat-square"></i>
+            </a>
+        </div>
+        <div class="copyright">
+            &copy; Copyright 2023
+        </div>
+    </footer>
+</section>
+

@@ -1,0 +1,80 @@
+﻿@model Cafeteria.Models.Ingredient
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Chi tiết nguyên vật liệu</h1>
+<div>
+    <table class="w3-table w3-bordered">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IngredientName)
+            </th>
+            <th>
+                @Html.DisplayFor(model => model.IngredientName)
+            </th>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Quantity)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.CalculationUnit)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.CalculationUnit)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Price)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.ImportedAt)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.ImportedAt)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.ExportedAt)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.ExportedAt)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.ExpirationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.ExpirationDate)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.IsActive)
+            </td>
+        </tr>
+    </table>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.IngredientId">Sửa</a> |
+    <a asp-action="Index">Quay lại danh sách</a>
+</div>

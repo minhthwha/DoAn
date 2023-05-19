@@ -1,0 +1,49 @@
+﻿@model Cafeteria.Models.Supplier
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Chi tiết nhà cung cấp</h1>
+
+<div>
+    <table class="w3-table w3-bordered">
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.SupplierName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.SupplierName)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.SupplierEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.SupplierEmail)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.SupplierPhone)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.SupplierPhone)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.SupplierAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.SupplierAddress)
+            </td>
+        </tr>
+    </table>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.SupplierId">Sửa</a> |
+    <a asp-action="Index">Quay lại danh sách</a>
+</div>

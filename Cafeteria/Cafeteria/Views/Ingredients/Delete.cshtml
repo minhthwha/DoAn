@@ -1,0 +1,82 @@
+﻿@model Cafeteria.Models.Ingredient
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Xóa nguyên vật liệu</h1>
+<h3>Bạn chắc chắn muốn xóa nguyên vật liệu này?</h3>
+<div>
+    <table class="w3-table w3-bordered">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IngredientName)
+            </th>
+            <th>
+                @Html.DisplayFor(model => model.IngredientName)
+            </th>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Quantity)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.CalculationUnit)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.CalculationUnit)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Price)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.ImportedAt)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.ImportedAt)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.ExportedAt)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.ExportedAt)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.ExpirationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.ExpirationDate)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.IsActive)
+            </td>
+        </tr>
+    </table>
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="IngredientId" />
+        <input type="submit" value="Xóa" class="btn btn-danger" /> |
+        <a asp-action="Index">Quay lại danh sách</a>
+    </form>
+</div>

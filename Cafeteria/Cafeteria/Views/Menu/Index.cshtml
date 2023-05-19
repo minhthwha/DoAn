@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Cafeteria.Models.Category>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="menu">
+    <div class="pic-area">
+    </div>
+    @foreach (var items in Model)
+    {
+        <div style="font-size: 50px; text-align:center">@items.CategoryName</div>
+        <div class="flex">
+            @foreach (var item in items.CategoryDrink)
+            {
+                <div class="box">
+                    <div class="img-container">
+                        <img height="100" width="50" src="@Html.DisplayFor(modelItem => item.Image)" />
+                        <div class="box__btns">
+                            <a class="box__btn" asp-controller="Menu" asp-route-id="@item.DrinkId" asp-action="Details">
+                                Xem chi tiết
+                            </a>
+                            <a class="box__btn" asp-action="AddToCart" asp-route-drinkId="@item.DrinkId" asp-controller="Bills">
+                                Thêm vào giỏ hàng
+                            </a>
+                        </div>
+                    </div>
+                    <h2>@Html.DisplayFor(modelItem => item.DrinkName)</h2>
+                    <h3>@item.Price.ToString("n0") VNĐ</h3>
+                </div>
+            }
+        </div>
+    }
+    <footer>
+        <div class="icons">
+            <a href="#!">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#!">
+                <i class="fab fa-facebook"></i>
+            </a>
+            <a href="#!">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#!">
+                <i class="fab fa-snapchat-square"></i>
+            </a>
+        </div>
+        <div class="copyright">&copy; Copyright 2023</div>
+    </footer>
+</section>

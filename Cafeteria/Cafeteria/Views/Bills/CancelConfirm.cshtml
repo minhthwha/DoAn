@@ -1,0 +1,112 @@
+﻿
+@{
+    ViewData["Title"] = "CancelConfirm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Bạn chắc chắn muốn hủy đơn hàng này?</h1>
+
+<section class="services">
+    <div class="main-area">
+        <div class="section-area">
+            <div class="section-C">
+                <div class="box-img">
+                    <img src="/img/Bill.jpg" />
+                </div>
+                <h2 style="text-align:center;">
+                    @{
+                        double thanhTien = 0;
+                        <p>
+                            Mã đơn hàng: @Model.OrderId
+                        </p>
+                        <p>
+                            Tên khách hàng: @Model.GuestName
+                        </p>
+                        <p>
+                            Số điện thoại khách hàng: @Model.GuestPhone
+                        </p>
+                        <p>
+                            Địa chỉ khách hàng: @Model.GuestAddress
+                        </p>
+                        <p>
+                            Ghi chú: @Model.Note
+                        </p>
+                        <p>
+                            Phương thức thanh toán: Thanh toán trực tiếp
+                        </p>
+                        <p>
+                            Phí vận chuyển: 30,000 VNĐ
+                        </p>
+                        <p>
+                            Ngày tạo: @Model.CreatedAt
+                        </p>
+                        <table class="w3-table w3-bordered" style="width: 100%">
+                            <tr>
+                                <th>
+                                    Đồ uống
+                                </th>
+                                <th>
+                                    Giá
+                                </th>
+                                <th>
+                                    Số lượng
+                                </th>
+                                <th>
+                                    Thành tiền
+                                </th>
+                            </tr>
+                            @foreach (var item in Model.OrderItems)
+                            {
+                                thanhTien += item.Drink.Price * item.Quantity;
+                                <tr>
+                                    <td>
+                                        @item.Drink.DrinkName
+                                    </td>
+                                    <td>
+                                        @item.Drink.Price.ToString("n0")
+                                    </td>
+                                    <td>
+                                        @item.Quantity
+                                    </td>
+                                    <td>
+                                        @thanhTien.ToString("n0")
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                        double total = 0;
+                        total += thanhTien + 30000;
+                        <p>
+                            Tổng tiền: @(total.ToString("n0")) VNĐ
+                        </p>
+                    }
+                    <button type="button" class="btn btn-danger" asp-area="" asp-controller="Bills" asp-action="Cancel">
+                        Xác nhận
+                    </button>
+                    <button type="button" class="btn btn-danger" asp-area="" asp-controller="Bills" asp-action="Search">
+                        Xem các đơn hàng khác
+                    </button>
+                </h2>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="icons">
+            <a href="#!">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#!">
+                <i class="fab fa-facebook"></i>
+            </a>
+            <a href="#!">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#!">
+                <i class="fab fa-snapchat-square"></i>
+            </a>
+        </div>
+        <div class="copyright">
+            &copy; Copyright 2023
+        </div>
+    </footer>
+</section>
